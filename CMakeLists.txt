@@ -49,4 +49,4 @@ if (GLES_FOUND)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${GLES_LIBRARIES})
 endif()
 
-install(TARGETS genesis-ui RUNTIME DESTINATION bin)
+install(TARGETS genesis-os RUNTIME DESTINATION bin)
