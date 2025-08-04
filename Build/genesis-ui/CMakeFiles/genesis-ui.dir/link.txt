@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/genesis-ui.dir/link.d "CMakeFiles/genesis-ui.dir/src/main.cpp.o" -o ../bin/genesis-ui  -Wl,-rpath,/home/nephilim/Playground/Genesis-OS/Build/bin: ../bin/libgenesis-core.so
