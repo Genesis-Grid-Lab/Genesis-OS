@@ -2,8 +2,17 @@ cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
+option(NO_OS "Turn off build for os" OFF)
+
 # build output directories
 
+if(NO_OS)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY $<0:>${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<0:>${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY $<0:>${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_PDB_OUTPUT_DIRECTORY $<0:>${CMAKE_BINARY_DIR}/lib)
+set(EXECUTABLE_OUTPUT_PATH $<0:>${CMAKE_BINARY_DIR}/bin)
+else()
 # Output dir: everything goes to build/output/
 set(OUTPUT_ROOT ${CMAKE_BINARY_DIR}/output)
 
@@ -15,6 +24,7 @@ set(CMAKE_INSTALL_PREFIX           ${OUTPUT_ROOT}/usr)
 
 # Optional: make `make install` populate ${OUTPUT_ROOT}
 include(GNUInstallDirs)
+endif()
 
 # cpp standard options
 

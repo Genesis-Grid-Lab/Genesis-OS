@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/nephilim/Playground/Genesis-OS/Build/genesis-ui",
+  "command": "/usr/bin/c++  -I/home/nephilim/Playground/Genesis-OS/genesis-ui/include -I/home/nephilim/Playground/Genesis-OS/genesis-core/include -I/home/nephilim/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nephilim/Playground/Genesis-OS/vendor/glm -I\"/home/nephilim/Playground/Genesis-OS/genesis-core/\\$$<BUILD_INTERFACE:/home/nephilim/Playground/Genesis-OS/genesis-core/include/Genesis\" -I\"/home/nephilim/Playground/Genesis-OS/genesis-core/\\$$<BUILD_INTERFACE:/home/nephilim/Playground/Genesis-OS/genesis-core/include/Genesis/Core\" -I/home/nephilim/Playground/Genesis-OS/vendor/glm/glm/.. -std=gnu++17 -o CMakeFiles/genesis-ui.dir/src/main.cpp.o -c /home/nephilim/Playground/Genesis-OS/genesis-ui/src/main.cpp",
+  "file": "/home/nephilim/Playground/Genesis-OS/genesis-ui/src/main.cpp",
+  "output": "genesis-ui/CMakeFiles/genesis-ui.dir/src/main.cpp.o"
+}
+]
