@@ -1,6 +1,6 @@
 #define GL_GLES2
-#include "Config.h"
-#include "Screen/PageFlipper.h"
+#include "Genesis/Core/Config.h"
+#include "Genesis/Screen/PageFlipper.h"
 
 #define CHECK(x, msg) if (!(x)) { std::cerr << msg << std::endl; cleanup(); return -1; }
 
