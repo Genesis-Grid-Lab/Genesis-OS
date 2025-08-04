@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -g -Wl,--dependency-file=CMakeFiles/genesis-core.dir/link.d -shared -Wl,-soname,libgenesis-core.so -o ../bin/libgenesis-core.so "CMakeFiles/genesis-core.dir/src/PageFlipper.cpp.o"  -ldrm -lgbm -lEGL -lGLESv2
