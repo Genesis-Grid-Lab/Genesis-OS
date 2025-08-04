@@ -13,11 +13,12 @@ file(GLOB_RECURSE headers ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
 add_library(${PROJECT_NAME} SHARED ${sources} ${headers})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-	${CMAKE_CURRENT_SOURCE_DIR}/include/Genesis  
-     ${CMAKE_CURRENT_SOURCE_DIR}/include/Genesis/Core  
-    # ${CMAKE_SOURCE_DIR}/vendor/entt/src/entt
-    # ${CMAKE_SOURCE_DIR}/vendor/glad/include    
-    ${CMAKE_SOURCE_DIR}/vendor/glm
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/Genesis  
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/Genesis/Core  
+  # ${CMAKE_SOURCE_DIR}/vendor/entt/src/entt
+  # ${CMAKE_SOURCE_DIR}/vendor/glad/include    
+  ${CMAKE_SOURCE_DIR}/vendor/glm
     
   )
 
