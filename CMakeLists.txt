@@ -49,5 +49,6 @@ add_subdirectory(vendor/glm)
 # add_subdirectory(vendor/JoltPhysics/build)
 # add_subdirectory(vendor/ImGuiFileDialog)
 
+add_subdirectory(genesis-core)
 add_subdirectory(genesis-3Dengine)
 add_subdirectory(genesis-ui)
