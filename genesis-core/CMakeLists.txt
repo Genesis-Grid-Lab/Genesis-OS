@@ -17,7 +17,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/Genesis> 
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/Genesis/Core>  
   # ${CMAKE_SOURCE_DIR}/vendor/entt/src/entt
-  # ${CMAKE_SOURCE_DIR}/vendor/glad/include    
+  # ${CMAKE_SOURCE_DIR}/vendor/glad/include
+  ${CMAKE_SOURCE_DIR}/vendor/spdlog/include
   ${CMAKE_SOURCE_DIR}/vendor/glm
     
   )
@@ -26,7 +27,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME} PUBLIC      
   # glad    
   glm
-  # EnTT     
+  # EnTT
+  spdlog
 )
 
 
