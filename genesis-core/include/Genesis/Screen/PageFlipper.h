@@ -1,5 +1,5 @@
 #pragma once
-#include "Config.h"
+#include "Core/Config.h"
 
 // Thin POD to carry display/scanout state built by your existing init code.
 struct DisplayState {
