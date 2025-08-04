@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(genesis-os)
+project(genesis-ui)
 
 #add_subdirectory(vendor/glm)
 find_package(PkgConfig)
@@ -49,4 +49,4 @@ if (GLES_FOUND)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${GLES_LIBRARIES})
 endif()
 
-#install(TARGETS genesis-os RUNTIME DESTINATION bin)
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
