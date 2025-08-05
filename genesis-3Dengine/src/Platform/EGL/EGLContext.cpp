@@ -1,10 +1,14 @@
 #include "Platform/EGL/EGLContext.h"
 #include "Genesis/Core/Log.h"
-#include "EGL/eglplatform.h"
+#include "Genesis/Core/GC_Assert.h"
 
 namespace G3D {
 
-  EGLGraphicsContext::EGLGraphicsContext(GC::Display *display) : mDisplay(display) {}
+EGLGraphicsContext::EGLGraphicsContext(DisplayState &display)
+    : mDisplay(display) {
+  
+    GC_INFO("EGL context creating");
+    }
 
   EGLGraphicsContext::~EGLGraphicsContext(){
     if (egl_display != EGL_NO_DISPLAY) {
@@ -17,21 +21,24 @@ namespace G3D {
 
   void EGLGraphicsContext::Init(){
     GC_CORE_INFO("Initialize EGL ...");
+
+    GC_CORE_ASSERT(mDisplay.gbm_dev, "gbm dev null");
+    
     // Initialize EGL
-    egl_display = eglGetPlatformDisplay(EGL_PLATFORM_GBM_KHR, mDisplay->mState.gbm_dev, NULL);
+    egl_display = eglGetPlatformDisplay(EGL_PLATFORM_GBM_KHR,
+                                        mDisplay.gbm_dev, NULL);
     if (egl_display == EGL_NO_DISPLAY) {
       GC_CORE_ERROR( "Unable to get EGL platform display");
-      gbm_surface_destroy(mDisplay->mState.gbm_surf);
-      gbm_device_destroy(mDisplay->mState.gbm_dev);
-      close(mDisplay->mState.drm_fd);
+      gbm_surface_destroy(mDisplay.gbm_surf);
+      gbm_device_destroy(mDisplay.gbm_dev);
+      close(mDisplay.drm_fd);
     }
-    
     if (!eglInitialize(egl_display, NULL, NULL)) {
       GC_CORE_ERROR("Unable to initialize EGL");
       eglTerminate(egl_display);
-      gbm_surface_destroy(mDisplay->mState.gbm_surf);
-      gbm_device_destroy(mDisplay->mState.gbm_dev);
-      close(mDisplay->mState.drm_fd);
+      gbm_surface_destroy(mDisplay.gbm_surf);
+      gbm_device_destroy(mDisplay.gbm_dev);
+      close(mDisplay.drm_fd);
     }
 
     std::cout << "EGL Version = " << eglQueryString(egl_display, EGL_VERSION) << "\n";
@@ -39,8 +46,7 @@ namespace G3D {
 
     eglBindAPI(EGL_OPENGL_ES_API);
 
-    gladLoadEGL(egl_display, eglGetProcAddress);  // load EGL
-    gladLoadGLES2(eglGetProcAddress);    
+    // gladLoadEGL(egl_display, eglGetProcAddress);  // load EGL 
 
     // Choose config
     EGLint attr[] = {
@@ -58,9 +64,9 @@ namespace G3D {
         num_configs == 0) {
       GC_CORE_ERROR("Unable to choose EGL config");
         eglTerminate(egl_display);
-        gbm_surface_destroy(mDisplay->mState.gbm_surf);
-        gbm_device_destroy(mDisplay->mState.gbm_dev);
-        close(mDisplay->mState.drm_fd);
+        gbm_surface_destroy(mDisplay.gbm_surf);
+        gbm_device_destroy(mDisplay.gbm_dev);
+        close(mDisplay.drm_fd);
     }
 
     GC_CORE_INFO("Creating EGL context ..");
@@ -70,30 +76,32 @@ namespace G3D {
     if (egl_ctx == EGL_NO_CONTEXT) {
       GC_CORE_ERROR("Unable to create EGL context");
         eglTerminate(egl_display);
-        gbm_surface_destroy(mDisplay->mState.gbm_surf);
-        gbm_device_destroy(mDisplay->mState.gbm_dev);
-        close(mDisplay->mState.drm_fd);
+        gbm_surface_destroy(mDisplay.gbm_surf);
+        gbm_device_destroy(mDisplay.gbm_dev);
+        close(mDisplay.drm_fd);
     }
 
     GC_CORE_INFO("Creating EGL surface ...");
     // Create surface
-    egl_surf = eglCreateWindowSurface(egl_display, config, mDisplay->mState.gbm_surf, NULL);
+    egl_surf = eglCreateWindowSurface(egl_display, config, mDisplay.gbm_surf, NULL);
     if (egl_surf == EGL_NO_SURFACE) {
       GC_CORE_ERROR("Unable to create EGL surface : {}", eglGetError());
       eglTerminate(egl_display);
-      gbm_surface_destroy(mDisplay->mState.gbm_surf);
-      gbm_device_destroy(mDisplay->mState.gbm_dev);
-      close(mDisplay->mState.drm_fd);
+      gbm_surface_destroy(mDisplay.gbm_surf);
+      gbm_device_destroy(mDisplay.gbm_dev);
+      close(mDisplay.drm_fd);
     }
 
     if (!eglMakeCurrent(egl_display, egl_surf, egl_surf, egl_ctx)) {
       GC_CORE_ERROR("Unable to make context current");
         eglDestroySurface(egl_display, egl_surf);
         eglTerminate(egl_display);
-        gbm_surface_destroy(mDisplay->mState.gbm_surf);
-        gbm_device_destroy(mDisplay->mState.gbm_dev);
-        close(mDisplay->mState.drm_fd);
+        gbm_surface_destroy(mDisplay.gbm_surf);
+        gbm_device_destroy(mDisplay.gbm_dev);
+        close(mDisplay.drm_fd);
     }
+
+    gladLoadGLES2(eglGetProcAddress); 
 
     eglSwapInterval(egl_display, 1);
   }

@@ -5,7 +5,7 @@
 
 namespace G3D {
   struct Vertex{
-    GLfloat pos[3];
+    float pos[3];
     };
 
 enum class ShaderDataType {

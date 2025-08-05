@@ -5,8 +5,7 @@
 #include "Genesis3D/Renderer.h"
 #include "Genesis3D/Buffer.h"
 #include "Genesis3D/VertexArray.h"
-
-#define CHECK(x, msg) if (!(x)) { std::cerr << msg << std::endl; cleanup(); return -1; }
+#include "Genesis3D/Shader.h"
 
 using namespace std;
 
@@ -34,129 +33,85 @@ void main()
 
 int main() {
   GC::Log::Init();
-  GC::Display screen;
+  GC_CORE_INFO("Staring UI ..");
+  GC::Display::Init();
+  GC_CORE_INFO("Context start..");
   Scope<G3D::GraphicsContext> m_Context;
 
+  GC_CORE_INFO("Context create");
+  m_Context = G3D::GraphicsContext::Create(GC::Display::mState);
+
+  GC_CORE_INFO("Context init");
+  m_Context->Init();
+
+  GC_CORE_INFO("Renderer init");
+  G3D::Renderer::Init();
+  
+  GC_CORE_INFO("Vertex create");
   Ref<G3D::VertexArray> vertexArray = G3D::VertexArray::Create();
 
-  m_Context = G3D::GraphicsContext::Create(&screen);
+  Ref<G3D::Shader> shader = G3D::Shader::Create("shader", vertSource, fragSource);
+  shader->Bind();
+  // Define a cube
+  G3D::Vertex vertices[] = {
+    // Front face
+    {{-0.5f, -0.5f,  0.5f}},
+    {{ 0.5f, -0.5f,  0.5f}},
+    {{ 0.5f,  0.5f,  0.5f}},
+    {{-0.5f,  0.5f,  0.5f}},
+    // Back face
+    {{-0.5f, -0.5f, -0.5f}},
+    {{ 0.5f, -0.5f, -0.5f}},
+    {{ 0.5f,  0.5f, -0.5f}},
+    {{-0.5f,  0.5f, -0.5f}},
+  };
+  uint32_t indices[] = {
+    0, 1, 2, 2, 3, 0, 4, 5, 6, 6, 7, 4, 0, 1, 5, 5, 4, 0,
+    1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 3, 0, 4, 4, 7, 3,
+  };
 
-  m_Context->Init();
-  
-  G3D::Renderer::Init();
-    // Compile shaders
-    GLuint vert = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vert, 1, &vertSource, NULL);
-    glCompileShader(vert);
-    GLint compiled = 0;
-    glGetShaderiv(vert, GL_COMPILE_STATUS, &compiled);
-    if (compiled == GL_FALSE) {
-        cerr << "Vertex shader failed to compile" << endl;
-    }
+  Ref<G3D::VertexBuffer> vertexBuffer =
+    G3D::VertexBuffer::Create(vertices, sizeof(vertices));
+  vertexBuffer->SetLayout({ {G3D::ShaderDataType::Float3, "aPosition"} });
 
-    GLuint frag = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(frag, 1, &fragSource, NULL);
-    glCompileShader(frag);
-    glGetShaderiv(frag, GL_COMPILE_STATUS, &compiled);
-    if (compiled == GL_FALSE) {
-        cerr << "Fragment shader failed to compile" << endl;
-    }
+  const auto &ib = G3D::IndexBuffer::Create(indices, 36);
 
-    GLuint program = glCreateProgram();
-    glAttachShader(program, vert);
-    glAttachShader(program, frag);
-    glLinkProgram(program);
-    glGetProgramiv(program, GL_LINK_STATUS, &compiled);
-    if (compiled == GL_FALSE) {
-        cerr << "Program linking failed" << endl;
-    }
+  vertexArray->AddVertexBuffer(vertexBuffer);
+  vertexArray->SetIndexBuffer(ib);
 
-    glUseProgram(program);
+  glEnable(GL_DEPTH_TEST);
+  glClearDepthf(1.0f);
+  glDepthFunc(GL_LEQUAL);
 
-    // Define a cube
-    G3D::Vertex vertices[] = {
-        // Front face
-        {{-0.5f, -0.5f,  0.5f}},
-        {{ 0.5f, -0.5f,  0.5f}},
-        {{ 0.5f,  0.5f,  0.5f}},
-        {{-0.5f,  0.5f,  0.5f}},
-        // Back face
-        {{-0.5f, -0.5f, -0.5f}},
-        {{ 0.5f, -0.5f, -0.5f}},
-        {{ 0.5f,  0.5f, -0.5f}},
-        {{-0.5f,  0.5f, -0.5f}},
-    };
-    uint32_t indices[] = {
-        0, 1, 2, 2, 3, 0, 4, 5, 6, 6, 7, 4, 0, 1, 5, 5, 4, 0,
-        1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 3, 0, 4, 4, 7, 3,
-    };
+  // Loop
+  float rotation = 0.0f;
 
-    Ref<G3D::VertexBuffer> vertexBuffer =
-        G3D::VertexBuffer::Create(vertices, sizeof(vertices));
-    vertexBuffer->SetLayout({ {G3D::ShaderDataType::Float3, "aPosition"} });
+  const float dt = 0.016f;
 
-    const auto &ib = G3D::IndexBuffer::Create(indices, 36);
-
-    vertexArray->AddVertexBuffer(vertexBuffer);
-    vertexArray->SetIndexBuffer(ib);
-
-    // VBOs
-    // GLuint vbo, ibo;
-    // glGenBuffers(1, &vbo);
-    // glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    // glGenBuffers(1, &ibo);
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    GLint pos = glGetAttribLocation(program, "aPosition");
-
-    // glEnableVertexAttribArray(pos);
-    // glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
-
-    GLint mvp = glGetUniformLocation(program, "uModelViewProjection");
-
+  for (;;) {
+    G3D::RenderCommand::Clear();
+    G3D::RenderCommand::SetClearColor({1, 0, 0, 1});      
     glEnable(GL_DEPTH_TEST);
-    glClearDepthf(1.0f);
     glDepthFunc(GL_LEQUAL);
-    // eglSwapInterval(egl_display, 1);
-
-    // Loop
-    float rotation = 0.0f;
-
-    // dState = {drm_fd, crtc_id, conn_id, mode, gbm, gbm_surf, egl_display, egl_surf};
-
-    // eglSwapInterval(egl_display, 1);
-
-    const float dt = 0.016f;
-
-    for (;;) {
-      G3D::RenderCommand::Clear();
-      G3D::RenderCommand::SetClearColor({1, 0, 0, 1});      
-      glEnable(GL_DEPTH_TEST);
-      glDepthFunc(GL_LEQUAL);
-      glClearDepthf(1.0f);
+    glClearDepthf(1.0f);
       
-      rotation += dt;
+    rotation += dt;
       
-      glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1280.0f/720.0f, 0.1f, 100.0f);
-      glm::mat4 view = glm::lookAt(glm::vec3(0, 0, 5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1280.0f/720.0f, 0.1f, 100.0f);
+    glm::mat4 view = glm::lookAt(glm::vec3(0, 0, 5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
       
-      glm::mat4 model = glm::rotate(glm::mat4(1.0f), rotation, glm::vec3(0, 1, 0));
+    glm::mat4 model = glm::rotate(glm::mat4(1.0f), rotation, glm::vec3(0, 1, 0));
       
-      glm::mat4 mvpMat = projection * view * model;
-      
-      glUniformMatrix4fv(mvp, 1, GL_FALSE, &mvpMat[0][0]);
+    glm::mat4 mvpMat = projection * view * model;
 
-      // glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(GLushort),
-      // GL_UNSIGNED_SHORT, 0); eglSwapBuffers(egl_display, egl_surf);
-      G3D::RenderCommand::DrawIndexed(vertexArray);
-      m_Context->SwapBuffers();
-      if (!screen.FlipPage())
-	break;
-    }
-    G3D::Renderer::Shutdown();
+    shader->SetMat4("uModelViewProjection", mvpMat);
+
+    G3D::RenderCommand::DrawIndexed(vertexArray);
+    m_Context->SwapBuffers();
+    if (!GC::Display::FlipPage())
+      break;
+  }
+  G3D::Renderer::Shutdown();
 
     return 0;
 }

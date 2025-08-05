@@ -38,7 +38,8 @@ project(GenesisOs C CXX)
 # enable console logging
 
 if(${CMAKE_BUILD_TYPE} MATCHES Debug)
-    add_definitions(-DGC_DEBUG)
+  add_definitions(-DGC_DEBUG)
+  set(CMAKE_CXX_FLAGS "-g")
 endif(${CMAKE_BUILD_TYPE} MATCHES Debug)
 
 add_subdirectory(vendor/glm)

@@ -4,15 +4,12 @@ namespace GC {
 
   class Display {
   public:
-    Display();
-    ~Display();
+    static bool Init();
+    static void Shutdown();
 
-    bool FlipPage() { return mFlipper.present(); }
-  private:  
-    void CleanUp();
+    static bool FlipPage() { return mFlipper.present(); }
   public:
-    DisplayState mState;
-    PageFlipper mFlipper;
-    bool ERROR = false;
+    static DisplayState mState;
+    static PageFlipper mFlipper;
   };
 }

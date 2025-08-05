@@ -1,6 +1,7 @@
 #include "Platform/EGL/EGLVertexArray.h"
 #include "Config.h"
 #include "Genesis/Core/GC_Assert.h"
+#include "Log.h"
 // #include "glad/egl.h"
 
 namespace G3D {
@@ -26,11 +27,11 @@ static GLenum ShaderDataTypeToEGLBaseType(ShaderDataType type)
   return 0;
 }
 
-  EGLVertexArray::EGLVertexArray()
-  {
+EGLVertexArray::EGLVertexArray() {
     // glCreateVertexArrays(1, &m_RendererID);
-    glGenVertexArrays(1, &m_RendererID);
-  }
+  glGenVertexArrays(1, &m_RendererID);
+  
+}
 
   EGLVertexArray::~EGLVertexArray()
   {

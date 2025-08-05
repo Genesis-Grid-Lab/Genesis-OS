@@ -1,17 +1,20 @@
 #include "Screen/Display.h"
 #include "Core/Log.h"
 
-namespace GC{
+namespace GC {
 
-#define CHECK(x, msg) if (!(x)) { GC_CORE_ERROR("{}", msg); /*leanup();*/ Display::ERROR = true; } //<------------------
+  DisplayState Display::mState = DisplayState();
+  PageFlipper Display::mFlipper = PageFlipper(Display::mState);
 
-  Display::Display() : mFlipper(mState) {
+#define CHECK(x, msg) if (!(x)) { GC_CORE_ERROR("{}", msg); /*leanup();*/ return -1; } //<------------------
+
+  bool Display::Init() {
 
     GC_CORE_INFO("Opening DRM ...");
     mState.drm_fd = open("/dev/dri/card1", O_RDWR | O_CLOEXEC);
     if (mState.drm_fd < 0) {
       GC_CORE_ERROR("Unable to open render node: {}", errno);
-      ERROR = true;
+      return -1;
     }
 
     drmModeRes *resources = drmModeGetResources(mState.drm_fd);
@@ -45,7 +48,7 @@ namespace GC{
     }
     if(mState.crtc_id == 0){
       GC_CORE_ERROR("No CRTC found for connector {}", conn->connector_id);
-      ERROR = true;
+      return -1;
     }
 
     CHECK(enc, "No encoder with CRTC found");
@@ -57,7 +60,7 @@ namespace GC{
     if (!mState.gbm_dev) {
       GC_CORE_ERROR("Unable to create GBM device");
       close(mState.drm_fd);
-      ERROR = true;
+      return -1;
     }
 
     GC_CORE_INFO("Creating GBM surface");
@@ -68,18 +71,14 @@ namespace GC{
       GC_CORE_ERROR("Unable to create GBM surface");
       gbm_device_destroy(mState.gbm_dev);
       close(mState.drm_fd);
-      ERROR = true;
+      return -1;
     }
-  
+
+    return 0;
   }
 
-  Display::~Display() {
+  void Display::Shutdown() {
     mFlipper.cleanup();
-    CleanUp();
-  }
-
-  void Display::CleanUp() {
-  
   }
 
 }

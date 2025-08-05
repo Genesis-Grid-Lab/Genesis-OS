@@ -16,9 +16,11 @@
 #include <sys/select.h>
 #include <memory>
 
-#include <EGL/egl.h>
+// #include "glad/egl.h"
+#include "EGL/egl.h"
 #include <EGL/eglext.h>
 #include "glad/gles2.h"
+#include <EGL/egl.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

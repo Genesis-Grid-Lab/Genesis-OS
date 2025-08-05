@@ -29,6 +29,11 @@ int GLAD_EGL_VERSION_1_2 = 0;
 int GLAD_EGL_VERSION_1_3 = 0;
 int GLAD_EGL_VERSION_1_4 = 0;
 int GLAD_EGL_VERSION_1_5 = 0;
+int GLAD_EGL_EXT_platform_base = 0;
+int GLAD_EGL_KHR_create_context = 0;
+int GLAD_EGL_KHR_platform_gbm = 0;
+int GLAD_EGL_KHR_surfaceless_context = 0;
+int GLAD_EGL_MESA_platform_gbm = 0;
 
 
 
@@ -43,7 +48,9 @@ PFNEGLCREATEPBUFFERFROMCLIENTBUFFERPROC glad_eglCreatePbufferFromClientBuffer = 
 PFNEGLCREATEPBUFFERSURFACEPROC glad_eglCreatePbufferSurface = NULL;
 PFNEGLCREATEPIXMAPSURFACEPROC glad_eglCreatePixmapSurface = NULL;
 PFNEGLCREATEPLATFORMPIXMAPSURFACEPROC glad_eglCreatePlatformPixmapSurface = NULL;
+PFNEGLCREATEPLATFORMPIXMAPSURFACEEXTPROC glad_eglCreatePlatformPixmapSurfaceEXT = NULL;
 PFNEGLCREATEPLATFORMWINDOWSURFACEPROC glad_eglCreatePlatformWindowSurface = NULL;
+PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC glad_eglCreatePlatformWindowSurfaceEXT = NULL;
 PFNEGLCREATESYNCPROC glad_eglCreateSync = NULL;
 PFNEGLCREATEWINDOWSURFACEPROC glad_eglCreateWindowSurface = NULL;
 PFNEGLDESTROYCONTEXTPROC glad_eglDestroyContext = NULL;
@@ -58,6 +65,7 @@ PFNEGLGETCURRENTSURFACEPROC glad_eglGetCurrentSurface = NULL;
 PFNEGLGETDISPLAYPROC glad_eglGetDisplay = NULL;
 PFNEGLGETERRORPROC glad_eglGetError = NULL;
 PFNEGLGETPLATFORMDISPLAYPROC glad_eglGetPlatformDisplay = NULL;
+PFNEGLGETPLATFORMDISPLAYEXTPROC glad_eglGetPlatformDisplayEXT = NULL;
 PFNEGLGETPROCADDRESSPROC glad_eglGetProcAddress = NULL;
 PFNEGLGETSYNCATTRIBPROC glad_eglGetSyncAttrib = NULL;
 PFNEGLINITIALIZEPROC glad_eglInitialize = NULL;
@@ -137,6 +145,12 @@ static void glad_egl_load_EGL_VERSION_1_5( GLADuserptrloadfunc load, void* userp
     glad_eglGetSyncAttrib = (PFNEGLGETSYNCATTRIBPROC) load(userptr, "eglGetSyncAttrib");
     glad_eglWaitSync = (PFNEGLWAITSYNCPROC) load(userptr, "eglWaitSync");
 }
+static void glad_egl_load_EGL_EXT_platform_base( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_EGL_EXT_platform_base) return;
+    glad_eglCreatePlatformPixmapSurfaceEXT = (PFNEGLCREATEPLATFORMPIXMAPSURFACEEXTPROC) load(userptr, "eglCreatePlatformPixmapSurfaceEXT");
+    glad_eglCreatePlatformWindowSurfaceEXT = (PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC) load(userptr, "eglCreatePlatformWindowSurfaceEXT");
+    glad_eglGetPlatformDisplayEXT = (PFNEGLGETPLATFORMDISPLAYEXTPROC) load(userptr, "eglGetPlatformDisplayEXT");
+}
 
 
 
@@ -174,7 +188,11 @@ static int glad_egl_find_extensions_egl(EGLDisplay display) {
     const char *extensions;
     if (!glad_egl_get_extensions(display, &extensions)) return 0;
 
-    GLAD_UNUSED(&glad_egl_has_extension);
+    GLAD_EGL_EXT_platform_base = glad_egl_has_extension(extensions, "EGL_EXT_platform_base");
+    GLAD_EGL_KHR_create_context = glad_egl_has_extension(extensions, "EGL_KHR_create_context");
+    GLAD_EGL_KHR_platform_gbm = glad_egl_has_extension(extensions, "EGL_KHR_platform_gbm");
+    GLAD_EGL_KHR_surfaceless_context = glad_egl_has_extension(extensions, "EGL_KHR_surfaceless_context");
+    GLAD_EGL_MESA_platform_gbm = glad_egl_has_extension(extensions, "EGL_MESA_platform_gbm");
 
     return 1;
 }
@@ -237,6 +255,7 @@ int gladLoadEGLUserPtr(EGLDisplay display, GLADuserptrloadfunc load, void* userp
     glad_egl_load_EGL_VERSION_1_5(load, userptr);
 
     if (!glad_egl_find_extensions_egl(display)) return 0;
+    glad_egl_load_EGL_EXT_platform_base(load, userptr);
 
 
     return version;
