@@ -6,30 +6,109 @@
 #include "Genesis3D/Buffer.h"
 #include "Genesis3D/VertexArray.h"
 #include "Genesis3D/Shader.h"
+#include "Genesis3D/Mesh.h"
+#include "Genesis3D/Texture.h"
 
 using namespace std;
 
-// Vertex Shader Source
-const char* vertSource = R"(
-attribute vec3 aPosition;
-
-uniform mat4 uModelViewProjection;
-
-void main()
+unsigned int TextureFromFile(const char *path, const string &directory)
 {
-    gl_Position = uModelViewProjection * vec4(aPosition, 1.0);
-}
-)";
+  string filename = string(path);
+  filename = directory + '/' + filename;
 
-// Fragment Shader Source
-const char* fragSource = R"(
-precision mediump float;
+  unsigned int textureID;
+  glGenTextures(1, &textureID);
 
-void main()
-{
-    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+  int width, height, nrComponents;
+  stbi_set_flip_vertically_on_load(1);
+  unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
+  if (data)
+    {
+      GLenum format;
+      if (nrComponents == 1)
+	format = GL_RED;
+      else if (nrComponents == 3)
+	format = GL_RGB;
+      else if (nrComponents == 4)
+	format = GL_RGBA;
+
+      glBindTexture(GL_TEXTURE_2D, textureID);
+      glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+      glGenerateMipmap(GL_TEXTURE_2D);
+
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+      stbi_image_free(data);
+    }
+  else
+    {
+      std::cout << "Texture failed to load at path: " << path << std::endl;
+      stbi_image_free(data);
+    }
+
+  return textureID;
 }
-)";
+
+Ref<G3D::Mesh> GenerateCubeMesh() {
+  std::vector<G3D::Vertex> vertices;
+  std::vector<uint32_t> indices;
+
+  glm::vec3 positions[] = {
+    {-0.5f, -0.5f,  0.5f}, { 0.5f, -0.5f,  0.5f}, { 0.5f,  0.5f,  0.5f}, {-0.5f,  0.5f,  0.5f}, // front
+    {-0.5f, -0.5f, -0.5f}, {-0.5f,  0.5f, -0.5f}, { 0.5f,  0.5f, -0.5f}, { 0.5f, -0.5f, -0.5f}, // back
+    {-0.5f,  0.5f, -0.5f}, {-0.5f,  0.5f,  0.5f}, { 0.5f,  0.5f,  0.5f}, { 0.5f,  0.5f, -0.5f}, // top
+    {-0.5f, -0.5f, -0.5f}, { 0.5f, -0.5f, -0.5f}, { 0.5f, -0.5f,  0.5f}, {-0.5f, -0.5f,  0.5f}, // bottom
+    { 0.5f, -0.5f, -0.5f}, { 0.5f,  0.5f, -0.5f}, { 0.5f,  0.5f,  0.5f}, { 0.5f, -0.5f,  0.5f}, // right
+    {-0.5f, -0.5f, -0.5f}, {-0.5f, -0.5f,  0.5f}, {-0.5f,  0.5f,  0.5f}, {-0.5f,  0.5f, -0.5f}  // left
+  };
+
+  glm::vec3 normals[] = {
+    { 0,  0,  1}, { 0,  0, -1}, { 0,  1,  0}, { 0, -1,  0}, { 1,  0,  0}, {-1,  0,  0}
+  };
+
+  glm::vec2 uvs[] = {
+    {0, 0}, {1, 0}, {1, 1}, {0, 1}
+  };
+
+  uint32_t faceIndices[] = {
+    0, 1, 2, 2, 3, 0,
+    4, 5, 6, 6, 7, 4,
+    8, 9,10,10,11, 8,
+    12,13,14,14,15,12,
+    16,17,18,18,19,16,
+    20,21,22,22,23,20
+  };
+
+  for (int face = 0; face < 6; ++face) {
+    for (int i = 0; i < 4; ++i) {
+      G3D::Vertex v;
+      v.Position = positions[face * 4 + i];
+      v.Normal = normals[face];
+      v.TexCoords = uvs[i];
+      v.Tangent = glm::vec3(1, 0, 0);     // Placeholder
+      v.Bitangent = glm::vec3(0, 1, 0);   // Placeholder
+      vertices.push_back(v);
+    }
+  }
+
+  for (int i = 0; i < 36; ++i)
+    indices.push_back(faceIndices[i]);
+
+  G3D::TextureMesh tesMesh;
+  tesMesh.id =
+      TextureFromFile("board.png", "/usr/share/genesis-ui/Data/Textures");
+  tesMesh.type = "texture_diffuse";
+  std::vector<G3D::TextureMesh> noTextures; // Can be replaced later
+  noTextures.emplace_back(tesMesh);  
+  
+
+  return CreateRef<G3D::Mesh>(vertices, indices, noTextures);
+}
+
+using namespace std;
 
 int main() {
   GC::Log::Init();
@@ -50,36 +129,10 @@ int main() {
   GC_CORE_INFO("Vertex create");
   Ref<G3D::VertexArray> vertexArray = G3D::VertexArray::Create();
 
-  Ref<G3D::Shader> shader =
-      G3D::Shader::Create("shader", vertSource, fragSource);
   Ref<G3D::Shader> shader2 = G3D::Shader::Create("/usr/share/genesis-ui/Data/Shaders/shader.glsl");
   shader2->Bind();
-  // Define a cube
-  G3D::Vertex vertices[] = {
-    // Front face
-    {{-0.5f, -0.5f,  0.5f}},
-    {{ 0.5f, -0.5f,  0.5f}},
-    {{ 0.5f,  0.5f,  0.5f}},
-    {{-0.5f,  0.5f,  0.5f}},
-    // Back face
-    {{-0.5f, -0.5f, -0.5f}},
-    {{ 0.5f, -0.5f, -0.5f}},
-    {{ 0.5f,  0.5f, -0.5f}},
-    {{-0.5f,  0.5f, -0.5f}},
-  };
-  uint32_t indices[] = {
-    0, 1, 2, 2, 3, 0, 4, 5, 6, 6, 7, 4, 0, 1, 5, 5, 4, 0,
-    1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 3, 0, 4, 4, 7, 3,
-  };
-
-  Ref<G3D::VertexBuffer> vertexBuffer =
-    G3D::VertexBuffer::Create(vertices, sizeof(vertices));
-  vertexBuffer->SetLayout({ {G3D::ShaderDataType::Float3, "aPosition"} });
-
-  const auto &ib = G3D::IndexBuffer::Create(indices, 36);
-
-  vertexArray->AddVertexBuffer(vertexBuffer);
-  vertexArray->SetIndexBuffer(ib);
+  
+  Ref<G3D::Mesh> cube = GenerateCubeMesh();
 
   glEnable(GL_DEPTH_TEST);
   glClearDepthf(1.0f);
@@ -108,7 +161,7 @@ int main() {
 
     shader2->SetMat4("uModelViewProjection", mvpMat);
 
-    G3D::RenderCommand::DrawIndexed(vertexArray);
+    cube->Draw(shader2);
     m_Context->SwapBuffers();
     if (!GC::Display::FlipPage())
       break;

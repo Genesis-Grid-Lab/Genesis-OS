@@ -8,7 +8,9 @@ file(GLOB_RECURSE headers ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
 
 file(GLOB_RECURSE EGLFile ${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/EGL/*.cpp)
 
-add_library(${PROJECT_NAME} SHARED ${sources} ${headers} ${EGLFile})
+add_library(${PROJECT_NAME} SHARED ${sources} ${headers} ${EGLFile}
+  ${CMAKE_SOURCE_DIR}/vendor/stb_image/stb_image.cpp ${CMAKE_SOURCE_DIR}/vendor/stb_image/stb_truetype.cpp
+)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -17,6 +19,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   ${CMAKE_SOURCE_DIR}/genesis-core/include/Genesis
   # ${CMAKE_SOURCE_DIR}/vendor/entt/src/entt
   ${CMAKE_SOURCE_DIR}/vendor/glad/include
+  ${CMAKE_SOURCE_DIR}/vendor/stb_image
     
   )
 

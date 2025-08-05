@@ -4,9 +4,7 @@
 #include "Genesis/Core/GC_Assert.h"
 
 namespace G3D {
-  struct Vertex{
-    float pos[3];
-    };
+  struct Vertex;
 
 enum class ShaderDataType {
   None = 0,

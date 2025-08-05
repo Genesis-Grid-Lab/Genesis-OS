@@ -1,0 +1,16 @@
+[18:20:45] [info] GENESIS: Staring UI ..
+[18:20:45] [info] GENESIS: Opening DRM ...
+[18:20:45] [info] GENESIS: Creating GBM device ..
+[18:20:45] [info] GENESIS: Creating GBM surface
+[18:20:45] [info] GENESIS: Context start..
+[18:20:45] [info] GENESIS: Context create
+[18:20:45] [info] APP: context create
+[18:20:45] [info] APP: EGL context creating
+[18:20:45] [info] GENESIS: Context init
+[18:20:45] [info] GENESIS: Initialize EGL ...
+[18:20:45] [info] GENESIS: Creating EGL context ..
+[18:20:45] [info] GENESIS: Creating EGL surface ...
+[18:20:45] [info] GENESIS: Renderer init
+[18:20:45] [info] GENESIS: Vertex create
+[18:20:45] [info] GENESIS: Vertex Array Creating
+[18:20:45] [info] GENESIS: Vertex Array Creating
