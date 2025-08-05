@@ -65,5 +65,19 @@ add_subdirectory(genesis-core)
 add_subdirectory(genesis-3Dengine)
 add_subdirectory(genesis-ui)
 
+# glm
+install(TARGETS glm
+        ARCHIVE DESTINATION lib
+        INCLUDES DESTINATION include)
+
+#glad
+install(TARGETS glad
+        ARCHIVE DESTINATION lib
+        INCLUDES DESTINATION include)      
+
+# spdlog
+install(TARGETS spdlog LIBRARY DESTINATION lib)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/vendor/spdlog/include DESTINATION include)
+
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION share/genesis-ui)
 
