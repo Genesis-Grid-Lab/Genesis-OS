@@ -9,13 +9,14 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   ${CMAKE_SOURCE_DIR}/genesis-core/include
   ${CMAKE_SOURCE_DIR}/genesis-core/include/Genesis
+  ${CMAKE_SOURCE_DIR}/genesis-3Dengine/include/Genesis3D
   ${CMAKE_SOURCE_DIR}/vendor/glm    
   )
 
 # link libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC
   genesis-core
-  # glad    
+  genesis-3Dengine
   glm
   # EnTT     
 )

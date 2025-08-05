@@ -11,7 +11,7 @@
 #include <spdlog/fmt/ostr.h>
 #pragma warning(pop)
 
-namespace CORE {
+namespace GC {
 
     class  Log{
     public:
@@ -44,15 +44,15 @@ inline OStream& operator<<(OStream& os, glm::qua<T, Q> quaternio)
 }
 
 // Core log macros
-#define UE_CORE_TRACE(...)    ::UE::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define UE_CORE_INFO(...)     ::UE::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define UE_CORE_WARN(...)     ::UE::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define UE_CORE_ERROR(...)    ::UE::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define UE_CORE_CRITICAL(...) ::UE::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define GC_CORE_TRACE(...)    ::GC::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define GC_CORE_INFO(...)     ::GC::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define GC_CORE_WARN(...)     ::GC::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define GC_CORE_ERROR(...)    ::GC::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define GC_CORE_CRITICAL(...) ::GC::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
-#define UE_TRACE(...)         ::UE::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define UE_INFO(...)          ::UE::Log::GetClientLogger()->info(__VA_ARGS__)
-#define UE_WARN(...)          ::UE::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define UE_ERROR(...)         ::UE::Log::GetClientLogger()->error(__VA_ARGS__)
-#define UE_CRITICAL(...)      ::UE::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define GC_TRACE(...)         ::GC::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define GC_INFO(...)          ::GC::Log::GetClientLogger()->info(__VA_ARGS__)
+#define GC_WARN(...)          ::GC::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define GC_ERROR(...)         ::GC::Log::GetClientLogger()->error(__VA_ARGS__)
+#define GC_CRITICAL(...)      ::GC::Log::GetClientLogger()->critical(__VA_ARGS__)

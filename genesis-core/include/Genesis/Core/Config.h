@@ -1,5 +1,5 @@
 #pragma once
-
+#define GL_GLES2
 #include <iostream>
 #include <fcntl.h>
 #include <unistd.h>
@@ -17,11 +17,22 @@
 #include <memory>
 
 #include <EGL/egl.h>
-#include <GLES2/gl2.h>
 #include <EGL/eglext.h>
+#include "glad/gles2.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
+#ifdef GC_DEBUG
+#include <signal.h>
+#define GC_DEBUGBREAK() raise(SIGTRAP)
+#define GC_ENABLE_ASSERTS
+#else
+#define GC_DEBUGBREAK()
+#endif
+
+#define GC_EXPAND_MACRO(x) x
+#define GC_STRINGIFY_MACRO(x) #x
 
 
 //--------------------- Scope = unique pointer --------------------

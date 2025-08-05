@@ -1,12 +1,18 @@
 #include "Screen/PageFlipper.h"
 
-class Display {
-public:
-  Display();
-  ~Display();
-  void CleanUp();
+namespace GC {
 
-private:
-  DisplayState mState;
-  PageFlipper mFlipper;
-};
+  class Display {
+  public:
+    Display();
+    ~Display();
+
+    bool FlipPage() { return mFlipper.present(); }
+  private:  
+    void CleanUp();
+  public:
+    DisplayState mState;
+    PageFlipper mFlipper;
+    bool ERROR = false;
+  };
+}

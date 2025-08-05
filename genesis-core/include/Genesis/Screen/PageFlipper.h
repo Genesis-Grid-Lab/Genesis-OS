@@ -7,6 +7,7 @@ struct DisplayState {
   uint32_t crtc_id = 0;
   uint32_t conn_id = 0;
   drmModeModeInfo mode{}; // non-const because drmModeSetCrtc wants a mutable ptr
+  drmModeCrtc *saved_crtc = nullptr;
   
   gbm_device*  gbm_dev  = nullptr;
   gbm_surface* gbm_surf = nullptr;

@@ -1,8 +1,140 @@
 [
 {
-  "directory": "/home/nephilim/Playground/Genesis-OS/Build/Debug/genesis-ui",
-  "command": "/usr/bin/c++ -DUE_DEBUG -I/home/nephilim/Playground/Genesis-OS/genesis-ui/include -I/home/nephilim/Playground/Genesis-OS/genesis-core/include -I/home/nephilim/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nephilim/Playground/Genesis-OS/vendor/glm -I\"/home/nephilim/Playground/Genesis-OS/genesis-core/\\$$<BUILD_INTERFACE:/home/nephilim/Playground/Genesis-OS/genesis-core/include/Genesis\" -I\"/home/nephilim/Playground/Genesis-OS/genesis-core/\\$$<BUILD_INTERFACE:/home/nephilim/Playground/Genesis-OS/genesis-core/include/Genesis/Core\" -I/home/nephilim/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -o CMakeFiles/genesis-ui.dir/src/main.cpp.o -c /home/nephilim/Playground/Genesis-OS/genesis-ui/src/main.cpp",
-  "file": "/home/nephilim/Playground/Genesis-OS/genesis-ui/src/main.cpp",
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/glad",
+  "command": "/usr/bin/cc -DGC_DEBUG -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -g -fPIC -o CMakeFiles/glad.dir/src/egl.c.o -c /home/nesmy/Playground/Genesis-OS/vendor/glad/src/egl.c",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/glad/src/egl.c",
+  "output": "vendor/glad/CMakeFiles/glad.dir/src/egl.c.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/glad",
+  "command": "/usr/bin/cc -DGC_DEBUG -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -g -fPIC -o CMakeFiles/glad.dir/src/gles2.c.o -c /home/nesmy/Playground/Genesis-OS/vendor/glad/src/gles2.c",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/glad/src/gles2.c",
+  "output": "vendor/glad/CMakeFiles/glad.dir/src/gles2.c.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/glad",
+  "command": "/usr/bin/cc -DGC_DEBUG -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -g -fPIC -o CMakeFiles/glad.dir/src/vulkan.c.o -c /home/nesmy/Playground/Genesis-OS/vendor/glad/src/vulkan.c",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/glad/src/vulkan.c",
+  "output": "vendor/glad/CMakeFiles/glad.dir/src/vulkan.c.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/spdlog",
+  "command": "/usr/bin/c++ -DFMT_EXPORT -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dspdlog_EXPORTS -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -g -std=c++17 -fPIC -o CMakeFiles/spdlog.dir/src/spdlog.cpp.o -c /home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/spdlog.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/spdlog.cpp",
+  "output": "vendor/spdlog/CMakeFiles/spdlog.dir/src/spdlog.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/spdlog",
+  "command": "/usr/bin/c++ -DFMT_EXPORT -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dspdlog_EXPORTS -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -g -std=c++17 -fPIC -o CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o -c /home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/stdout_sinks.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/stdout_sinks.cpp",
+  "output": "vendor/spdlog/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/spdlog",
+  "command": "/usr/bin/c++ -DFMT_EXPORT -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dspdlog_EXPORTS -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -g -std=c++17 -fPIC -o CMakeFiles/spdlog.dir/src/color_sinks.cpp.o -c /home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/color_sinks.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/color_sinks.cpp",
+  "output": "vendor/spdlog/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/spdlog",
+  "command": "/usr/bin/c++ -DFMT_EXPORT -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dspdlog_EXPORTS -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -g -std=c++17 -fPIC -o CMakeFiles/spdlog.dir/src/file_sinks.cpp.o -c /home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/file_sinks.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/file_sinks.cpp",
+  "output": "vendor/spdlog/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/spdlog",
+  "command": "/usr/bin/c++ -DFMT_EXPORT -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dspdlog_EXPORTS -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -g -std=c++17 -fPIC -o CMakeFiles/spdlog.dir/src/async.cpp.o -c /home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/async.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/async.cpp",
+  "output": "vendor/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/spdlog",
+  "command": "/usr/bin/c++ -DFMT_EXPORT -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dspdlog_EXPORTS -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -g -std=c++17 -fPIC -o CMakeFiles/spdlog.dir/src/cfg.cpp.o -c /home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/cfg.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/cfg.cpp",
+  "output": "vendor/spdlog/CMakeFiles/spdlog.dir/src/cfg.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/vendor/spdlog",
+  "command": "/usr/bin/c++ -DFMT_EXPORT -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dspdlog_EXPORTS -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -g -std=c++17 -fPIC -o CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o -c /home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/bundled_fmtlib_format.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/vendor/spdlog/src/bundled_fmtlib_format.cpp",
+  "output": "vendor/spdlog/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-core",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_core_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-core.dir/src/Display.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-core/src/Display.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-core/src/Display.cpp",
+  "output": "genesis-core/CMakeFiles/genesis-core.dir/src/Display.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-core",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_core_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-core.dir/src/Log.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-core/src/Log.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-core/src/Log.cpp",
+  "output": "genesis-core/CMakeFiles/genesis-core.dir/src/Log.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-core",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_core_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-core.dir/src/PageFlipper.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-core/src/PageFlipper.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-core/src/PageFlipper.cpp",
+  "output": "genesis-core/CMakeFiles/genesis-core.dir/src/PageFlipper.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/Buffer.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Buffer.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Buffer.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/Buffer.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/GraphicsContext.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/GraphicsContext.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/GraphicsContext.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/GraphicsContext.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLBuffer.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLBuffer.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLBuffer.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLBuffer.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLContext.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLContext.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLContext.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLContext.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLRendererAPI.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLRendererAPI.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLRendererAPI.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLRendererAPI.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLVertexArray.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLVertexArray.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Platform/EGL/EGLVertexArray.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/Platform/EGL/EGLVertexArray.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/RenderCommand.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/RenderCommand.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/RenderCommand.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/RenderCommand.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/Renderer.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Renderer.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/Renderer.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/Renderer.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-3Dengine",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -Dgenesis_3Dengine_EXPORTS -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -g -std=gnu++17 -fPIC -o CMakeFiles/genesis-3Dengine.dir/src/RendererAPI.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/RendererAPI.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/src/RendererAPI.cpp",
+  "output": "genesis-3Dengine/CMakeFiles/genesis-3Dengine.dir/src/RendererAPI.cpp.o"
+},
+{
+  "directory": "/home/nesmy/Playground/Genesis-OS/Build/Debug/genesis-ui",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DGC_DEBUG -DSPDLOG_COMPILED_LIB -DSPDLOG_SHARED_LIB -I/home/nesmy/Playground/Genesis-OS/genesis-ui/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include/Genesis3D -I/home/nesmy/Playground/Genesis-OS/vendor/glm -I/home/nesmy/Playground/Genesis-OS/genesis-core/include/Genesis/Core -I/home/nesmy/Playground/Genesis-OS/vendor/glad/include -I/home/nesmy/Playground/Genesis-OS/vendor/spdlog/include -I/usr/include/libdrm -I/home/nesmy/Playground/Genesis-OS/vendor/glm/glm/.. -I/home/nesmy/Playground/Genesis-OS/genesis-3Dengine/include -g -std=gnu++17 -o CMakeFiles/genesis-ui.dir/src/main.cpp.o -c /home/nesmy/Playground/Genesis-OS/genesis-ui/src/main.cpp",
+  "file": "/home/nesmy/Playground/Genesis-OS/genesis-ui/src/main.cpp",
   "output": "genesis-ui/CMakeFiles/genesis-ui.dir/src/main.cpp.o"
 }
 ]

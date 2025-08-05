@@ -38,10 +38,11 @@ project(GenesisOs C CXX)
 # enable console logging
 
 if(${CMAKE_BUILD_TYPE} MATCHES Debug)
-    add_definitions(-DUE_DEBUG)
+    add_definitions(-DGC_DEBUG)
 endif(${CMAKE_BUILD_TYPE} MATCHES Debug)
 
 add_subdirectory(vendor/glm)
+add_subdirectory(vendor/glad)
 # add_subdirectory(vendor/entt)
 # add_subdirectory(vendor/imgui)
  add_subdirectory(vendor/spdlog)
