@@ -64,3 +64,6 @@ add_subdirectory(vendor/glad)
 add_subdirectory(genesis-core)
 add_subdirectory(genesis-3Dengine)
 add_subdirectory(genesis-ui)
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION share/genesis-ui)
+

@@ -50,8 +50,10 @@ int main() {
   GC_CORE_INFO("Vertex create");
   Ref<G3D::VertexArray> vertexArray = G3D::VertexArray::Create();
 
-  Ref<G3D::Shader> shader = G3D::Shader::Create("shader", vertSource, fragSource);
-  shader->Bind();
+  Ref<G3D::Shader> shader =
+      G3D::Shader::Create("shader", vertSource, fragSource);
+  Ref<G3D::Shader> shader2 = G3D::Shader::Create("/usr/share/genesis-ui/Data/Shaders/shader.glsl");
+  shader2->Bind();
   // Define a cube
   G3D::Vertex vertices[] = {
     // Front face
@@ -104,7 +106,7 @@ int main() {
       
     glm::mat4 mvpMat = projection * view * model;
 
-    shader->SetMat4("uModelViewProjection", mvpMat);
+    shader2->SetMat4("uModelViewProjection", mvpMat);
 
     G3D::RenderCommand::DrawIndexed(vertexArray);
     m_Context->SwapBuffers();
