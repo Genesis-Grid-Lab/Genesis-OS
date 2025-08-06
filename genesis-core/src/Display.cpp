@@ -11,7 +11,8 @@ namespace GC {
   bool Display::Init() {
 
     GC_CORE_INFO("Opening DRM ...");
-    mState.drm_fd = open("/dev/dri/card1", O_RDWR | O_CLOEXEC);
+//mState.drm_fd = open("/dev/dri/card1", O_RDWR | O_CLOEXEC);
+	mState.drm_fd = open("/dev/dri/card0", O_RDWR | O_CLOEXEC);
     if (mState.drm_fd < 0) {
       GC_CORE_ERROR("Unable to open render node: {}", errno);
       return -1;
